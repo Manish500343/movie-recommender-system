@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Detail</title>
+    <style>
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        .movie-detail {
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="movie-detail">
+        <p><strong>Title:</strong> {{ one_detail.title }}</p>
+        <p><strong>Cast:</strong> {{ one_detail.cast }}</p>
+        <p><strong>Director:</strong> {{ one_detail.crew }}</p>
+        <p><strong>Release Date:</strong> {{ one_detail.release_date }}</p>
+        <p><strong>Original Language:</strong> {{ one_detail.original_language }}</p>
+        <p><strong>Popularity:</strong> {{ one_detail.popularity }}</p>
+        <p><strong>Revenue:</strong> {{ one_detail.revenue }}</p>
+        <p><strong>Vote Average:</strong> {{ one_detail.vote_average }}</p>
+        <p><strong>Vote Count:</strong> {{ one_detail.vote_count }}</p>
+        <p><strong>Genres:</strong> {{ one_detail.genres }}</p>
+        <p><strong>Keywords:</strong> {{ one_detail.keywords }}</p>
+        <p><strong>Overview:</strong> {{ one_detail.overview_x }}</p>
+        
+        <div>
+            <button onclick="history.back()">Back to Home</button>
+        </div>
+    </div>
+</body>
+</html>

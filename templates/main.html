@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: lightblue;
+        }
+        .poster {
+            height: 250px;
+            width: 250px;
+            
+        }
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .centered-div {
+            height: 49vh;
+            
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            font-size: 18px;
+            gap: 50px;
+        }
+        .form {
+            padding-bottom: 50px;
+        }
+        
+        #submit {
+            height: 30px;
+            width: 150px;
+        }
+        .detail_button {
+            text-align: center;
+            padding-top: 15px;
+        }
+        button {
+            height: 30px;
+            width: 90px;
+        }
+        img {
+            height: 250px;
+            width: 250px;
+        }
+        #selected_movie{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-div">
+        <form class="form" method="POST" action="{% url 'recommendation_view' %}">
+            {% csrf_token %}
+            <h1>Movie Recommender System</h1><br>
+            <label for="selected_movie">Select a Movie:</label>
+            <select name="selected_movie" id="selected_movie">
+                {% for name in movies %}
+                <option   value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <input id="submit" type="submit" value="Recommend">
+        </form>
+    </div>
+    {% if recommendations %}
+    <div class="movies">
+        {% for movie, poster in recommendations|slice:":5" %}
+        <div class="poster_and_button">
+            <h3>{{movie}}</h3>
+            <div class="poster">
+                <img src="{{ poster }}" alt="{{ movie }} poster">
+            </div>
+            <div class="detail_button">
+                <a href="{% url 'movie_detail' movie %}">
+                    <button>Details</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
